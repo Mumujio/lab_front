@@ -46,18 +46,19 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
 .theBiggest {
   background: url("http://119.23.189.220:666/photo/home-background5-photo.png")
     no-repeat center center fixed;
   background-size: cover;
 }
-.iframe-content{
+.iframe-content {
   margin: 0 auto;
-  height: 150vh;
+  height: 120vh;
   text-align: center;
-  h2{
-    font-size:2vw
+  display: flex;
+  flex-direction: column;
+  h2 {
+    font-size: 2vw;
   }
 }
 </style>
