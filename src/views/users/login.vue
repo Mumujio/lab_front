@@ -10,11 +10,11 @@
         <h2>登录</h2>
         <form action="">
           <div class="item">
-            <input type="text"  v-model.trim="username" />
+            <input type="text" v-model.trim="username" />
             <label for="">userName</label>
           </div>
           <div class="item">
-            <input type="password"  v-model.trim="password" />
+            <input type="password" v-model.trim="password" />
             <label for="">password</label>
           </div>
           <button class="btn" @click="login" type="button">
@@ -34,7 +34,7 @@
     </div>
 
     <video
-      src="http://119.23.189.220:666/view/UE5制作别墅.mp4"
+      src="@/assets/view/ue5Video.mp4"
       style="
         width: 100%;
         height: 100%;
@@ -52,9 +52,9 @@
 </template>
 
 <script>
-import axios from "axios"
+import axios from "axios";
 //qs 模块可以将js对象转换为字符串
-import qs from "qs"
+import qs from "qs";
 
 export default {
   data() {
@@ -64,59 +64,57 @@ export default {
     };
   },
   methods: {
-    
     //登录验证
-    async login(){
+    async login() {
       //后台登陆验证
-    if ( this.username=== 'mumujioadmin' && this.password === 'qpzm7913..@')
-    {
-      this.$router.push("/admin/index")
-      localStorage.setItem("token", 'Bearer adminmumujiologing')
-      this.$alert('登陆成功', '提示', {
-          confirmButtonText: '确定',
-          center: true
-        })
-      return
-    }
+      if (this.username === "mumujioadmin" && this.password === "qpzm7913..@") {
+        this.$router.push("/admin/index");
+        localStorage.setItem("token", "Bearer adminmumujiologing");
+        this.$alert("登陆成功", "提示", {
+          confirmButtonText: "确定",
+          center: true,
+        });
+        return;
+      }
       //用户登陆验证
       //res为后台返回的登录信息
-     const {data:res} = await axios({
-        
-      method:'POST',
-      url:'http://119.23.189.220:3007/api/login',
-      //配置 application/x-www-form-urlencoded格式请求 参考（https://www.cnblogs.com/edwardwzw/p/11694903.html）
-      headers: { 'content-type': 'application/x-www-form-urlencoded' },
-      data: qs.stringify({username:this.username,password:this.password})
-    })
+      const { data: res } = await axios({
+        method: "POST",
+        url: "http://119.23.189.220:3007/api/login",
+        //配置 application/x-www-form-urlencoded格式请求 参考（https://www.cnblogs.com/edwardwzw/p/11694903.html）
+        headers: { "content-type": "application/x-www-form-urlencoded" },
+        data: qs.stringify({
+          username: this.username,
+          password: this.password,
+        }),
+      });
       //登陆成功
-      if(res.status === 0){
-        localStorage.setItem("token", res.token)
-        this.$router.push("/")
+      if (res.status === 0) {
+        localStorage.setItem("token", res.token);
+        this.$router.push("/");
         //this.$alert为element-ui组件 MessageBox 弹框
-        this.$alert('登陆成功', '提示', {
-          confirmButtonText: '确定',
-          center: true
-        })
+        this.$alert("登陆成功", "提示", {
+          confirmButtonText: "确定",
+          center: true,
+        });
       }
       //登陆失败
-      else{
-        localStorage.removeItem("token")
+      else {
+        localStorage.removeItem("token");
         //this.$alert为element-ui组件 MessageBox 弹框
-        this.$alert(res.message, '登陆失败', {
-          confirmButtonText: '确定',
-          center: true
-        })
-        this.username='',
-        this.password=''
+        this.$alert(res.message, "登陆失败", {
+          confirmButtonText: "确定",
+          center: true,
+        });
+        (this.username = ""), (this.password = "");
       }
     },
     //注册功能
-    enroll(){
-      this.$router.push("/enroll")
+    enroll() {
+      this.$router.push("/enroll");
     },
-
-    },
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -320,11 +318,7 @@ body {
     top: -100%;
   }
 }
-img{
+img {
   height: 100%;
 }
-
-
-
-
 </style>
